@@ -1,23 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Select from 'react-select';
-
-const course = [
-    { value: 'Web Development', label: 'Web Development' },
-    { value: 'Android Development', label: 'Android Development' },
-    { value: 'Machine Learning', label: 'Machine Learning' },
-    { value: 'AR/VR', label: 'AR/VR' },
-    { value: 'Java', label: 'Java' },
-    { value: 'Networking', label: 'Networking' },
-    { value: 'IOT', label: 'IOT' },
-    { value: 'Embedded Systems', label: 'Embedded Systems' },
-
-  ];
-
-  const year = [
-    { value: '1st Year  ', label: '1st Year' },
-    { value: '2nd Year', label: '2nd Year' },
-  ]
 
   export default class JoinUs extends Component {
 
@@ -46,7 +28,7 @@ const course = [
             roll: '',
             email:'',        
             branch: '',
-            year:'',
+            year:null,
             course:null,
             contact:'',
             cvlink:'',
@@ -56,28 +38,9 @@ const course = [
 
     onChangeCourse(e) {
         this.setState({
-             course: e
+             course: e.target.value
             });
-        // console.log(`Option selected:`, e);
       };
-
-    // onChangeTodoDescription(e) {
-    //     this.setState({
-    //         todo_description: e.target.value
-    //     });
-    // }
-
-    // onChangeTodoResponsible(e) {
-    //     this.setState({
-    //         todo_responsible: e.target.value
-    //     });
-    // }
-
-    // onChangeTodoPriority(e) {
-    //     this.setState({
-    //         todo_priority: e.target.value
-    //     });
-    // }
 
     onChangeName(e) {
         this.setState({
@@ -104,11 +67,6 @@ const course = [
             year: e.target.value
         });
     }
-    // onChangeCourse(e) {
-    //     this.setState({
-    //         course: e.target.value
-    //     });
-    // }
     onChangeContact(e) {
         this.setState({
             contact: e.target.value
@@ -130,10 +88,6 @@ const course = [
         e.preventDefault();
         
         console.log(`Form submitted:`);
-        // console.log(`Todo Description: ${this.state.todo_description}`);
-        // console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-        // console.log(`Todo Priority: ${this.state.todo_priority}`);
-
         console.log(`Name: ${this.state.name}`);
         console.log(`Roll Number: ${this.state.roll}`);
         console.log(`Email: ${this.state.email}`);
@@ -145,10 +99,6 @@ const course = [
         console.log(`Reason: ${this.state.reason_of_join}`);
      
         const newTodo = {
-            // todo_description: this.state.todo_description,
-            // todo_responsible: this.state.todo_responsible,
-            // todo_priority: this.state.todo_priority,
-            // todo_completed: this.state.todo_completed
 
             name: this.state.name,
             roll: this.state.roll,
@@ -170,7 +120,7 @@ const course = [
             roll: '',
             email:'',        
             branch: '',
-            year:'',
+            year:null,
             course:null,
             contact:'',
             cvlink:'',
@@ -179,7 +129,6 @@ const course = [
     }
 
     render() {
-        // const { course } = this.state;
         return (
             <center>
                  <div className="col-md-6">
@@ -228,26 +177,23 @@ const course = [
                     </div>
                     <div className="form-group">
                         {/* <label>Year: </label> */}
-                        
-                            <Select 
-                                value={this.state.year}
-                                onChange={this.onChangeYear}
-                                options={year}
-                                    placeholder="Year of College" />
+                                <select className="form-control" value={this.state.year}  onChange={this.onChangeYear}  placeholder="Year of College">
+                                    <option value='1st yr'>1st Year</option>
+                                    <option value='2nd yr'>2nd Year</option>
+                                </select>
                     </div>
                     <div className="form-group">
                         {/* <label>Course: </label> */}
-                        {/* <input 
-                                type="text" 
-                                className="form-control"
-                                value={this.state.course}
-                                onChange={this.onChangeCourse}
-                                /> */}
-                                <Select 
-                                value={this.state.course}
-                                onChange={this.onChangeCourse}
-                                options={course}
-                                    placeholder="The Course You Are Interested"/>
+                                <select className="form-control" value={this.state.course}  onChange={this.onChangeCourse}  placeholder="The Course You Are Interested">
+                                    <option value='Web Development'>Web Development</option>
+                                    <option value='Android Development'>Android Development</option>
+                                    <option value='Machine Learning'>Machine Learning</option>
+                                    <option value='AR/VR'>AR/VR</option>
+                                    <option value='Java'>Java</option> 
+                                    <option value='Networking'>Networking</option>
+                                    <option value='IOT'>IOT</option>
+                                    <option value='Embedded Systems'>Embedded Systems</option>
+                                </select>
                     </div>
                     <div className="form-group">
                         {/* <label>Contact: </label> */}
