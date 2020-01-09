@@ -14,6 +14,11 @@ const course = [
 
   ];
 
+  const year = [
+    { value: '1st Year  ', label: '1st Year' },
+    { value: '2nd Year', label: '2nd Year' },
+  ]
+
   export default class JoinUs extends Component {
 
     constructor(props) {
@@ -223,13 +228,12 @@ const course = [
                     </div>
                     <div className="form-group">
                         {/* <label>Year: </label> */}
-                        <input 
-                                type="number" 
-                                placeholder="Year of College"
-                                className="form-control"
+                        
+                            <Select 
                                 value={this.state.year}
                                 onChange={this.onChangeYear}
-                                />
+                                options={year}
+                                    placeholder="Year of College" />
                     </div>
                     <div className="form-group">
                         {/* <label>Course: </label> */}
@@ -243,7 +247,7 @@ const course = [
                                 value={this.state.course}
                                 onChange={this.onChangeCourse}
                                 options={course}
-                                    placeholder="The Course You Are Interested <Not Loading to state!!!!!!!!!!>"/>
+                                    placeholder="The Course You Are Interested"/>
                     </div>
                     <div className="form-group">
                         {/* <label>Contact: </label> */}
