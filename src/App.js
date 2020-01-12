@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {BrowserRouter , Switch , Route ,Link} from 'react-router-dom';
+import {BrowserRouter , Switch , Route} from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import Navbar from './layouts/Navbar';
 import Footer from './layouts/Footer';
-import JoinUs from './components/JoinUs';
+import Register from './components/Register';
 
 class App extends Component {
   render() {
@@ -15,8 +15,8 @@ class App extends Component {
       <div className="App">
         <Navbar/>
         <Switch>
-          <Route exact path='/' component={JoinUs} />
-          {/* <Route path='/Join' component={JoinUs} /> */}
+          <Route exact path='/'/>
+          <Route path='/register' component={Register} />
           {/* <Route path='/Contact' component={ContactUs} /> */}
         </Switch>
         <br/>

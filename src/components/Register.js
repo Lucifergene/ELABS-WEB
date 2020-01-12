@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { MDBContainer, MDBAlert } from 'mdbreact';
 
   export default class JoinUs extends Component {
 
@@ -19,11 +20,6 @@ import axios from 'axios';
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            // todo_description: '',
-            // todo_responsible: '',
-            // todo_priority: '',
-            // todo_completed: false
-
             name: '',
             roll: '',
             email:'',        
@@ -35,6 +31,79 @@ import axios from 'axios';
             reason_of_join:''
         }
     }
+
+    componentWillMount() {
+        // this.getCountofSeats()
+      }
+
+    // async getCountofSeats(){
+    //     const count =
+    //       await axios.get("#")
+    //     console.log(count.data)
+    // }
+
+    async getcounts() {
+        try {
+            return await axios.get('#')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+      
+    
+    async getCountofSeats() {
+        const counts = await this.getcounts()
+        
+        if (counts.data.course === "Web Development") {
+          
+            const web_seats = counts.data.seats
+        }
+        if (counts.data.course === "Android Development") {
+            const android_seats = counts.data.seats
+        }
+        if (counts.data.course === "Machine Learning") {
+            const ml_seats = counts.data.seats
+        }
+        if (counts.data.course === "IOT") {
+            const iot_seats = counts.data.seats
+        }
+        if (counts.data.course === "Embedded Systems") {
+            const emb_seats = counts.data.seats
+        }
+
+        if (counts.data.course === "AR/VR") {
+            const arvr_seats = counts.data.seats
+        }
+
+        if (counts.data.course === "Networking") {
+            const net_seats = counts.data.seats
+        }
+
+        if (counts.data.course === "Java") {
+            const java_seats = counts.data.seats
+        }
+
+    }
+
+    AlertSuccess(e) {
+        return (
+          <MDBContainer>
+            <MDBAlert color="success" dismiss>
+              <strong>{e.target.value}</strong>
+            </MDBAlert>
+          </MDBContainer>
+        );
+      };
+
+    AlertWarning(e) {
+        return (
+            <MDBContainer>
+                <MDBAlert color="warning" dismiss>
+                    <strong>{e.target.value}</strong>
+                </MDBAlert>
+            </MDBContainer>
+        );
+    };
 
     onChangeCourse(e) {
         this.setState({
@@ -86,7 +155,7 @@ import axios from 'axios';
 
     onSubmit(e) {
         e.preventDefault();
-        
+        //  console.log(this.state);
         console.log(`Form submitted:`);
         console.log(`Name: ${this.state.name}`);
         console.log(`Roll Number: ${this.state.roll}`);
@@ -112,8 +181,19 @@ import axios from 'axios';
 
         };
 
-        axios.post('#', newTodo)
-            .then(res => console.log(res.data));
+        axios({
+            method: "POST", 
+            url:"#", 
+            data:  this.state
+            }).then((response)=>{
+            if (response.data.status === 'success'){               
+                this.AlertSuccess("Your Form Has Been Successfully Submitted");
+                // alert("Your Form Has Been Successfully Submitted"); 
+                this.resetForm()
+            }else if(response.data.status === 'fail'){
+                this.AlertWarning("There was some issue in sending your form. Try Again later.")
+            }
+            })
 
         this.setState({
             name: '',
@@ -182,10 +262,12 @@ import axios from 'axios';
                                     <option value='2nd yr'>2nd Year</option>
                                 </select>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-8">
                     <div className="form-group">
                         {/* <label>Course: </label> */}
                                 <select className="form-control" value={this.state.course}  onChange={this.onChangeCourse}  placeholder="The Course You Are Interested">
-                                    <option value='Web Development'>Web Development</option>
+                                    <option value='Web Development'>Web Development </option>
                                     <option value='Android Development'>Android Development</option>
                                     <option value='Machine Learning'>Machine Learning</option>
                                     <option value='AR/VR'>AR/VR</option>
@@ -194,6 +276,27 @@ import axios from 'axios';
                                     <option value='IOT'>IOT</option>
                                     <option value='Embedded Systems'>Embedded Systems</option>
                                 </select>
+                    </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label style={{fontSize:30},{textAlign:"left"}}><strong>Seats Left:  </strong>
+                       
+                    {(() => {
+                    switch (this.state.course) {
+                        case "Web Development":   return this.getCountofSeats.counts.web_seats;
+                        case "Android Development":   return this.getCountofSeats.android_seats;
+                        case "Machine Learning":   return this.getCountofSeats.ml_seats;
+                        case "AR/VR":   return this.getCountofSeats.arvr_seats;
+                        case "Java":   return this.getCountofSeats.java_seats;
+                        case "Networking":   return this.getCountofSeats.net_seats;
+                        case "IOT":   return this.getCountofSeats.iot_seats;
+                        case "Embedded Systems":   return this.getCountofSeats;
+                        default: return 0;
+                    }
+                    })()}
+                        
+                        </label>
+                    </div>
                     </div>
                     <div className="form-group">
                         {/* <label>Contact: </label> */}
@@ -206,8 +309,8 @@ import axios from 'axios';
                                 />
                     </div>
 
-                    <div className="form-group">
-                        {/* <label>CV Link: </label> */}
+                    {/* <div className="form-group">
+                        {/* <label>CV Link: </label> 
                         <input 
                                 type="text" 
                                 className="form-control"
@@ -215,7 +318,7 @@ import axios from 'axios';
                                 value={this.state.cvlink}
                                 onChange={this.onChangeCvlink}
                                 />
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         {/* <label>Reason Of Join: </label> */}
                             <textarea cols="40" rows="5" placeholder="Why Do You Want To Join?"className="form-control" value={this.state.reason_of_join} onChange={this.onChangeReason}></textarea>

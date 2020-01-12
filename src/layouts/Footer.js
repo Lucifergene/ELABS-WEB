@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-import Logo from '../assets/logo.jpg'
+import Logo from '../assets/Elabs logo black.png'
 
 const Footer = () => {
     return (
@@ -14,8 +12,8 @@ const Footer = () => {
           <div className="row text-center text-md-left mt-3 pb-3">
             {/* Grid column */}
             <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase text-white mb-4 font-weight-bold ">E-Labs</h6>
-              <img src={Logo}/>
+              <h6 className="text-uppercase text-white mx-auto mb-4 font-weight-bold ">E-Labs</h6>
+              <img src={Logo} height="150"/>
               
             </div>
             {/* Grid column */}
