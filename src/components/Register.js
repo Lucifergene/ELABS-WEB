@@ -13,7 +13,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
         this.onChangeBranch = this.onChangeBranch.bind(this);
         this.onChangeYear = this.onChangeYear.bind(this);
         this.onChangeCourse = this.onChangeCourse.bind(this);        
-        this.onChangeCvlink = this.onChangeCvlink.bind(this);
         this.onChangeContact = this.onChangeContact.bind(this);
         this.onChangeReason = this.onChangeReason.bind(this);
         
@@ -27,7 +26,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
             year:null,
             course:null,
             contact:'',
-            cvlink:'',
             reason_of_join:''
         }
     }
@@ -141,11 +139,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
             contact: e.target.value
         });
     }
-    onChangeCvlink(e) {
-        this.setState({
-            cvlink: e.target.value
-        });
-    }
     onChangeReason(e) {
         this.setState({
             reason_of_join: e.target.value
@@ -164,7 +157,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
         console.log(`Year: ${this.state.year}`);
         console.log(`Course: ${this.state.course}`);
         console.log(`Contact: ${this.state.contact}`);
-        console.log(`CV Link: ${this.state.cvlink}`);
         console.log(`Reason: ${this.state.reason_of_join}`);
      
         const newTodo = {
@@ -176,7 +168,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
             course: this.state.course,
             contact: this.state.contact,
             email: this.state.email,
-            cvlink: this.state.cvlink,
             reason_of_join: this.state.reason_of_join,
 
         };
@@ -184,7 +175,7 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
         axios({
             method: "POST", 
             url:"#", 
-            data:  this.state
+            data:  newTodo
             }).then((response)=>{
             if (response.data.status === 'success'){               
                 this.AlertSuccess("Your Form Has Been Successfully Submitted");
@@ -203,7 +194,6 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
             year:null,
             course:null,
             contact:'',
-            cvlink:'',
             reason_of_join:''
         })
     }
@@ -213,19 +203,19 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
             <center>
                  <div className="col-md-6">
             <div style={{marginTop: 50}}>
-                <h3>Recruitment Form</h3>
+                <h2 style={{fontFamily: 'Acme'}}>Registration Form</h2>
                 <br/>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group"> 
+                    <div className="form-group md-form"> 
                         {/* <label>Full Name: </label> */}
                         <input  type="text"
                                 className="form-control"
                                 placeholder="Enter Your Name"
                                 value={this.state.name}
                                 onChange={this.onChangeName}
-                                />
+                                required/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group md-form">
                         {/* <label>Roll Number: </label> */}
                         <input 
                                 type="number" 
@@ -233,9 +223,9 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                 className="form-control"
                                 value={this.state.roll}
                                 onChange={this.onChangeRoll}
-                                />
+                                required/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group md-form">
                         {/* <label>Email: </label> */}
                         <input 
                                 type="email" 
@@ -243,9 +233,9 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                 className="form-control"
                                 value={this.state.email}
                                 onChange={this.onChangeEmail}
-                                />
+                                required/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group md-form">
                         {/* <label>Branch: </label> */}
                         <input 
                                 type="text" 
@@ -253,20 +243,19 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                 className="form-control"
                                 value={this.state.branch}
                                 onChange={this.onChangeBranch}
-                                />
+                                required/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group md-form">
                         {/* <label>Year: </label> */}
                                 <select className="form-control" value={this.state.year}  onChange={this.onChangeYear}  placeholder="Year of College">
                                     <option value='1st yr'>1st Year</option>
                                     <option value='2nd yr'>2nd Year</option>
                                 </select>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-8">
-                    <div className="form-group">
+                    
+                    <div className="form-group md-form">
                         {/* <label>Course: </label> */}
-                                <select className="form-control" value={this.state.course}  onChange={this.onChangeCourse}  placeholder="The Course You Are Interested">
+                                <select className="form-control mdb-select md-form" value={this.state.course}  onChange={this.onChangeCourse}  placeholder="The Course You Are Interested">
                                     <option value='Web Development'>Web Development </option>
                                     <option value='Android Development'>Android Development</option>
                                     <option value='Machine Learning'>Machine Learning</option>
@@ -277,9 +266,9 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                     <option value='Embedded Systems'>Embedded Systems</option>
                                 </select>
                     </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <label style={{fontSize:30},{textAlign:"left"}}><strong>Seats Left:  </strong>
+                   
+                    
+                        <label style={{fontFamily:"acme"}}><strong>Seats Left:  </strong>
                        
                     {(() => {
                     switch (this.state.course) {
@@ -296,9 +285,9 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                     })()}
                         
                         </label>
-                    </div>
-                    </div>
-                    <div className="form-group">
+
+                    
+                    <div className="form-group md-form">
                         {/* <label>Contact: </label> */}
                         <input 
                                 type="number" 
@@ -306,7 +295,7 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                 placeholder="Mobile No."
                                 value={this.state.contact}
                                 onChange={this.onChangeContact}
-                                />
+                                required/>
                     </div>
 
                     {/* <div className="form-group">
@@ -319,17 +308,25 @@ import { MDBContainer, MDBAlert } from 'mdbreact';
                                 onChange={this.onChangeCvlink}
                                 />
                     </div> */}
-                    <div className="form-group">
+                    <div className="form-group md-form">
                         {/* <label>Reason Of Join: </label> */}
-                            <textarea cols="40" rows="5" placeholder="Why Do You Want To Join?"className="form-control" value={this.state.reason_of_join} onChange={this.onChangeReason}></textarea>
+                            <textarea cols="40" rows="5" placeholder=" Why Do You Want To Join?" className="form-control md-textarea" value={this.state.reason_of_join} onChange={this.onChangeReason}></textarea>
                     </div>
-
-                    <div className="form-group">
+                    <br/>
+                    <div class="form-group">
+                                    <button class="btn btn-default text-white btn-lg" style={{fontFamily: 'Acme'}}>Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+                                </div>
+                    {/* <div className="form-group">
                         <input type="submit" value="Submit" className="btn btn-primary" />
-                    </div>
+                        
+                    </div> */}
                 </form>
             </div>
-            </div>
+
+           
+
+</div>
+            
             </center>
         )
     }

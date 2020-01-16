@@ -1,9 +1,10 @@
 import React from 'react';
 import Logo from '../assets/Elabs logo black.png'
+import Footer_img from '../assets/footer-background-png-6.png'
 
 const Footer = () => {
     return (
-        <div>
+        <div style={{backgroundImage:`url(${Footer_img})`}}>
             {/* Footer */}
       <footer className="page-footer font-small mdb-color pt-4 bg-dark sticky-bottom">
         {/* Footer Links */}
@@ -12,7 +13,7 @@ const Footer = () => {
           <div className="row text-center text-md-left mt-3 pb-3">
             {/* Grid column */}
             <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase text-white mx-auto mb-4 font-weight-bold ">E-Labs</h6>
+              <h3 style={{fontFamily:"Play"}} className="text-uppercase text-white mx-auto mb-4 font-weight-bold ">E-Labs</h3>
               <img src={Logo} height="150"/>
               
             </div>
@@ -55,6 +56,7 @@ Bhubaneswar, India</p>
             {/* Grid column */}
             <div className="col-md-5 col-lg-4 ml-lg-0">
               {/* Social buttons */}
+              <br/>
               <div className="text-center text-md-right">
                 <ul className="list-unstyled list-inline">
                   <li className="list-inline-item">

@@ -22,8 +22,6 @@ class App extends Component {
           <Route path='/courses' component={Courses} />
           {/* <Route path='/Contact' component={ContactUs} /> */}
         </Switch>
-        <br/>
-        <br/>
         <Footer/>
       </div>
       </BrowserRouter>

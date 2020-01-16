@@ -13,6 +13,7 @@ function modals() {
   return (
     <div>
       <div className='container-fluid'>
+      <br/><br/><br/><br/>
         <div className='row'>
           <div className='col-xl-3 col-md-3 col-sm-6 col-6 text-center course-box'>
             <h4>
@@ -72,6 +73,7 @@ function modals() {
           </div>
         </div>
       </div>
+      <br/><br/><br/><br/>
     </div>
   );
 }
