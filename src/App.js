@@ -7,6 +7,8 @@ import './App.css';
 import Navbar from './layouts/Navbar';
 import Footer from './layouts/Footer';
 import Register from './components/Register';
+import Home from './components/Home'
+import Courses from './components/modals'
 
 class App extends Component {
   render() {
@@ -15,8 +17,9 @@ class App extends Component {
       <div className="App">
         <Navbar/>
         <Switch>
-          <Route exact path='/'/>
+          <Route exact path='/' component={Home}/>
           <Route path='/register' component={Register} />
+          <Route path='/courses' component={Courses} />
           {/* <Route path='/Contact' component={ContactUs} /> */}
         </Switch>
         <br/>
