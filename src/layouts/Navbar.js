@@ -15,9 +15,7 @@ const Navbar = () => {
               <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">  
                 <li class="nav-item ">                   
-                  <Link to="/" className="nav-link  text-dark" style={{fontFamily:"sans-serif"}}>HOME</Link></li> 
-                <li class="nav-item ">                   
-                  <Link to="/courses" className="nav-link  text-dark" style={{fontFamily:"sans-serif"}}>COURSES</Link></li>                         
+                  <Link to="/" className="nav-link  text-dark" style={{fontFamily:"sans-serif"}}>HOME</Link></li>                         
                 <li class="nav-item ">                   
                   <Link to="/register" className="nav-link  text-dark" style={{fontFamily:"sans-serif"}}>REGISTER</Link></li>
                 </ul>
